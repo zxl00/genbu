@@ -29,7 +29,7 @@ func (k *k8sCluster) AddK8sCluster(cluster *k8s.Configs) (err error) {
 	clientSet, err := global.NewClientInterface().NewClientSet(decodeConfig)
 	if err != nil {
 		global.TPLogger.Error("初始化clientSet失败：", err)
-		return
+		return errors.New("初始化clientSet失败")
 	}
 	err = dk.NewK8sInterface().AddK8sCluster(cluster)
 	if err != nil {
